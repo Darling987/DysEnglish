@@ -23,7 +23,9 @@ p{margin:0 0 14px;max-width:64ch}
 .btn:hover{background:var(--brand-d);color:var(--on-brand)}
 .btn:focus-visible{outline:3px solid var(--brand-d);outline-offset:2px}
 section{padding:36px 0}
-input{font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);width:100%;max-width:340px;margin-right:8px;margin-bottom:8px}
+input,textarea{display:block;font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);width:100%;margin-bottom:12px}
+input{max-width:340px}
+textarea{max-width:640px;min-height:180px;resize:vertical}
 footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--muted)}
 </style>
 </head>
@@ -44,7 +46,7 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:va
 <p>Si vous souhaitez plus d’informations par rapport aux méthodes, à la légitimité de notre équipe. Laissez-nous un message et votre email, nous vous répondrons dans les meilleurs délais.</p>
 <div>
 <input id="mail" type="email" placeholder="votre@email.fr" aria-label="Votre adresse e-mail">
-<input id="mess" type="message" placeholder="Notez votre message." aria-label="Votre message...">
+<textarea id="mess" rows="7" placeholder="Notez votre message." aria-label="Votre message..."></textarea>
 <button class="btn" id="send" type="button">Envoyer</button>
 </div>
 <p id="msg" role="status"></p>
@@ -56,9 +58,15 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:va
 <script>
 document.getElementById('send').addEventListener('click',function(){
   var v=document.getElementById('mail').value.trim();
+  var t=document.getElementById('mess').value.trim();
   var m=document.getElementById('msg');
-  m.textContent=/^\S+@\S+\.\S+$/.test(v)?'Merci ! Votre intérêt a bien été noté.':'Merci d’entrer une adresse e-mail valide.';
-});
+  if(!/^\S+@\S+\.\S+$/.test(v)){
+    m.textContent='Merci d’entrer une adresse e-mail valide.';
+  }else if(t===''){
+    m.textContent='Merci d’écrire votre message avant de l’envoyer.';
+  }else{
+    m.textContent='Merci pour votre message ! Nous vous répondrons dans les meilleurs délais.';
+  });
 </script>
 </body>
 </html>
