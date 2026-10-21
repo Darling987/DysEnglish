@@ -94,25 +94,9 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:va
 <p><span class="price">79,99 €/an</span></p>
 </section>
 
-<section id="contact">
-<h2>Contact</h2>
-<p>Si vous souhaitez plus d'informations par rapport aux méthodes, à la légitimité de notre équipe. Laissez nous votre email, nous vous contacterons directement.</p>
-<div>
-<input id="mail" type="email" placeholder="votre@email.fr" aria-label="Votre adresse e-mail">
-<button class="btn" id="send" type="button">Envoyer</button>
-</div>
-<p id="msg" role="status"></p>
-</section>
 </main>
 
 <footer><div class="wrap">DysEnglish est un projet étudiant réalisé dans le cadre d’une SAÉ à l’IUT de Sceaux (Université Paris-Saclay). Nom provisoire.</div></footer>
 
-<script>
-document.getElementById('send').addEventListener('click',function(){
-  var v=document.getElementById('mail').value.trim();
-  var m=document.getElementById('msg');
-  m.textContent=/^\S+@\S+\.\S+$/.test(v)?'Merci ! Votre intérêt a bien été noté.':'Merci d’entrer une adresse e-mail valide.';
-});
-</script>
 </body>
 </html>
