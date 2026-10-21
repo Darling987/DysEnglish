@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DysEnglish – Apprendre l'anglais avec une méthode différente dans un format populaire</title>
+<style>
+:root{--brand:#058B8C;--brand-d:#046a6b;--bg:#fbf8f1;--card:#ffffff;--text:#1f2a2b;--muted:#4b5a5b;--line:#e3ddd0;--on-brand:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--brand:#2ab7b8;--brand-d:#7fd6d6;--bg:#142021;--card:#1c2d2e;--text:#eef4f4;--muted:#b7c7c8;--line:#2c4344;--on-brand:#0b1c1c}}
+:root[data-theme="dark"]{--brand:#2ab7b8;--brand-d:#7fd6d6;--bg:#142021;--card:#1c2d2e;--text:#eef4f4;--muted:#b7c7c8;--line:#2c4344;--on-brand:#0b1c1c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Verdana,"Trebuchet MS",Arial,sans-serif;font-size:18px;line-height:1.8;letter-spacing:.02em;text-align:left}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:2rem;color:var(--brand-d)}
+.nav-links{display:flex;flex-wrap:wrap;gap:10px}
+.nav-links .btn{padding:10px 18px;font-size:.9rem}
+.hero{padding:56px 0 40px}
+h1{font-size:clamp(1.6rem,4vw,2rem);line-height:1.3;margin:0 0 16px}
+h2{font-size:1.6rem;line-height:1.3;margin:0 0 12px;color:var(--brand-d)}
+p{margin:0 0 14px;max-width:64ch}
+.btn{display:inline-block;background:var(--brand);color:var(--on-brand);padding:10px 20px;border-radius:12px;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;transition:background .2s ease}
+.btn:hover{background:var(--brand-d);color:var(--on-brand)}
+.btn:focus-visible{outline:3px solid var(--brand-d);outline-offset:2px}
+footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+<span class="logo">DysEnglish</span>
+<div class="nav-links">
+<a class="btn" href="index.html">Accueil</a>
+<a class="btn" href="index2.html">Notre méthode</a>
+<a class="btn" href="index3.html">Histoire de l’entreprise</a>
+<a class="btn" href="index5.html">Contact</a>
+</div>
+</nav></div></header>
+<main class="wrap">
+<div class="hero">
+<h1>L’anglais, enfin adapté aux personnes « dys ».</h1>
+<p>DysEnglish est une application qui aide les personnes dyslexiques et dysorthographiques, dysphasiques à apprendre l’anglais, via des méthodes pensées spécialement pour leurs difficultés, à un prix accessible.</p>
+</div>
 
+<section id="telecharger">
+<h1>Télécharger l’application</h1>
+<p>Installez DysEnglish sur votre téléphone.</p>
+<p><button class="btn" id="dl-auto" type="button">Télécharger l’application</button></p>
+<p>
+<button class="btn" id="dl-ios" type="button">App Store (iPhone)</button>
+<button class="btn" id="dl-android" type="button">Google Play (Android)</button>
+</p>
+<p id="dl-msg" role="status"></p>
+</section>
+
+</main>
+
+<footer><div class="wrap">DysEnglish est un projet étudiant réalisé dans le cadre d’une SAÉ à l’IUT de Sceaux (Université Paris-Saclay). Nom provisoire.</div></footer>
+
+<script>
+var disponible = false; // passe à true au lancement
+var LIENS = {
+  ios: 'https://apps.apple.com/ton-lien',
+  android: 'https://play.google.com/store/apps/details?id=ton.identifiant'
+};
+var msg = document.getElementById('dl-msg');
+
+function telecharger(plateforme){
+  if(!disponible){
+    msg.textContent = 'L’application sera disponible en janvier 2027. Merci de votre patience !';
+    return;
+  }
+  window.location.href = LIENS[plateforme];
+}
+
+document.getElementById('dl-ios').addEventListener('click', function(){ telecharger('ios'); });
+document.getElementById('dl-android').addEventListener('click', function(){ telecharger('android'); });
+
+document.getElementById('dl-auto').addEventListener('click', function(){
+  var ua = navigator.userAgent;
+  if(/iPhone|iPad|iPod/i.test(ua)){ telecharger('ios'); }
+  else if(/Android/i.test(ua)){ telecharger('android'); }
+  else{ msg.textContent = 'Ouvrez cette page sur votre téléphone, ou choisissez App Store ou Google Play ci-dessus.'; }
+});
+</script>
+  
+</body>
+</html>
