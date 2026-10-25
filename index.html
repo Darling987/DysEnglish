@@ -24,6 +24,9 @@ p{margin:0 0 14px;max-width:64ch}
 .btn{display:inline-block;background:var(--brand);color:var(--on-brand);padding:10px 20px;border-radius:12px;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer;transition:background .2s ease}
 .btn:hover{background:var(--brand-d);color:var(--on-brand)}
 .btn:focus-visible{outline:3px solid var(--brand-d);outline-offset:2px}
+.btn:hover{background:var(--brand-d);color:var(--on-brand)}
+.btn:hover{background:#40E0D0;color:#0b1c1c;transform:translateY(-2px);box-shadow:0 6px 16px rgba(64,224,208,.55)}
+.btn{transition:background .2s ease,color .2s ease,transform .2s ease,box-shadow .2s ease}
 section{padding:36px 0}
 .stats,.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
@@ -37,6 +40,9 @@ section{padding:36px 0}
 .price{font-size:2.2rem;font-weight:700;color:var(--brand-d)}
 input{font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);width:100%;max-width:340px;margin-right:8px;margin-bottom:8px}
 footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -97,6 +103,25 @@ footer{border-top:1px solid var(--line);padding:24px 0;font-size:.85rem;color:va
 </main>
 
 <footer><div class="wrap">DysEnglish est un projet étudiant réalisé dans le cadre d’une SAÉ à l’IUT de Sceaux (Université Paris-Saclay). Nom provisoire.</div></footer>
+
+<script>
+const elements = document.querySelectorAll('.card, .band, section h2');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+elements.forEach(el => {
+  el.classList.add('reveal');
+  const rang = Array.from(el.parentElement.children).indexOf(el);
+  el.style.transitionDelay = Math.min(rang, 5) * 0.1 + 's';
+  observer.observe(el);
+});
+</script>
 
 </body>
 </html>
